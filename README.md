@@ -1,16 +1,17 @@
-# gmail-api-create-message-body
-Tiny utility function for creating a message body that can be used for the Gmail API upload urls.
+# gmail-multipart-body-maker
+Tiny utility function for creating a multipart-message-body that can be used for the Gmail API upload urls.
 
 ## Example usage
 
 ```js
-var rp = require('request-promise');
-var fs = require('fs');
-var path = require('path');
-var createBody = require('gmail-api-create-message-body');
+const request = require('request-promise-native')
+const fs      = require('fs')
+const path    = require('path')
 
-var catBase64 = fs.readFileSync(path.join(__dirname, 'cat.png')).toString('base64');
-var dogBase64 = fs.readFileSync(path.join(__dirname, 'dog.jpg')).toString('base64');
+const createBody = require('./lib');
+
+const catBase64 = fs.readFileSync(path.join(__dirname, 'cat.png')).toString('base64');
+const dogBase64 = fs.readFileSync(path.join(__dirname, 'dog.jpg')).toString('base64');
 
 var body = createBody({
   headers: {
@@ -34,15 +35,16 @@ var body = createBody({
   ]
 });
 
-rp({
-  method: 'POST',
-  uri: 'https://www.googleapis.com/upload/gmail/v1/users/me/messages/send',
+const responseString = await request.post({
+  url: 'https://www.googleapis.com/upload/gmail/v1/users/me/messages/send?uploadType=multipart',
   headers: {
-    Authorization: 'Bearer {ACCESS_TOKEN}',
+    'Authorization': `OAuth ${token}`,
     'Content-Type': 'multipart/related; boundary="foo_bar_baz"'
   },
   body: body
-});
+})
+
+return JSON.parse(responseString)
 ```
 
 ## API
