@@ -1,12 +1,12 @@
 {
-  "name": "gmail-api-create-message-body",
-  "version": "1.0.0",
-  "description": "Tiny utility function for creating a message body that can be used for the Gmail API upload urls",
+  "name": "gmail-multipart-body-maker",
+  "version": "2.0.0",
+  "description": "Tiny utility function for creating a multipart-message-+body that can be used for the Gmail API upload urls",
   "main": "lib",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tholle <emtholin@gmail.com>",
+  "author": "Tholle <emtholin@gmail.com>, Saeed <saeed.uni68@gmail.com>",
   "license": "MIT",
-  "repository": "EmilTholin/gmail-api-create-message-body"
+  "repository": "saeed-vayghan/gmail-multipart-body-maker"
 }
