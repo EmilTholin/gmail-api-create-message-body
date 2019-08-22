@@ -8,10 +8,10 @@ const request = require('request-promise-native')
 const fs      = require('fs')
 const path    = require('path')
 
-const createBody = require('./lib');
+const createBody = require('./lib')
 
-const catBase64 = fs.readFileSync(path.join(__dirname, 'cat.png')).toString('base64');
-const dogBase64 = fs.readFileSync(path.join(__dirname, 'dog.jpg')).toString('base64');
+const catBase64 = fs.readFileSync(path.join(__dirname, 'cat.png')).toString('base64')
+const dogBase64 = fs.readFileSync(path.join(__dirname, 'dog.jpg')).toString('base64')
 
 var body = createBody({
   headers: {
@@ -33,7 +33,7 @@ var body = createBody({
       data: catBase64
     }
   ]
-});
+})
 
 const responseString = await request.post({
   url: 'https://www.googleapis.com/upload/gmail/v1/users/me/messages/send?uploadType=multipart',
@@ -64,7 +64,7 @@ return JSON.parse(responseString)
  * @param  {string}   params.attachments[].data   - Base64 representation of the attachment data
  * @return {string}
  */
- createBody(params);
+ createBody(params)
 ```
 
 ## Licence
